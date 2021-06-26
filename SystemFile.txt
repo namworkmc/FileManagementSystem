@@ -1,2 +1,8 @@
 TxfLog
 WPSettings.dat
+EDP
+Recovery
+.ini
+.tmp
+.BIN
+IndexerVolumeGuid

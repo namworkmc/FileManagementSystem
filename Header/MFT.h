@@ -55,4 +55,6 @@ string ReadStatus(string file);
 
 int MoveToAttribute(BYTE sector[512], int code);
 
+string Signature(BYTE sector[512]);
+
 #endif // !_MFT_

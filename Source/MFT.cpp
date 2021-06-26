@@ -91,6 +91,11 @@ int MoveToAttribute(BYTE sector[512], int code)
     return offset;
 }
 
+string Signature(BYTE sector[512])
+{
+    return subB(sector, 0x00, 0x03);
+}
+
 string AttributeName(BYTE sector[512])
 {
     cout.precision(0);
@@ -305,7 +310,7 @@ bool IsWhatEntry(BYTE sector[512],int bit)
 }
 
 Entry AnalysisSector(LPCWSTR  drive, int readPoint) {
-    
+
     Entry e;
 
     ReadSector(drive, readPoint, e.sector);
@@ -313,13 +318,13 @@ Entry AnalysisSector(LPCWSTR  drive, int readPoint) {
     string file = GetEntryStatus(e.sector);
 
     //cout << "readpoint: " << readPoint << endl;
-    if (!IsWhatEntry(e.sector, 2) && AttributeName(e.sector) != "" && file[2] != '1')
+    if (Signature(e.sector) == "FILE" && AttributeName(e.sector) != "" && file[2] != '1')
     {
         e.name = AttributeName(e.sector);
         e.status = GetEntryStatus(e.sector);
         e.residentFlat = ResidentData(e.sector);
 
-        if ((e.status.length() >= 28 && !IsWhatEntry(e.sector, 28)) || e.status.length() < 28) // if not directory file -> show size
+        if (e.status.length() >= 28 && file[28] != '1' || e.status.length() < 28) // if not directory file -> show size
             e.size = SizeData(e.sector);
         else
             e.size = 0;
@@ -329,7 +334,7 @@ Entry AnalysisSector(LPCWSTR  drive, int readPoint) {
     }
     else
         e.isFile = false;
-    
+
     return e;
 }
 
