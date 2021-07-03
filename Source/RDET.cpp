@@ -101,7 +101,7 @@ void RDET::showInfor(MainEntry main, vector<ExtraEntry> extra, int numOfExtraEnt
     cout << "Name: " << main.name << endl;
     cout << "Type: " << main.type << endl;
     cout << "State:" << main.state << endl;
-    cout << "Cluser start index: " << main.startCluster << endl;
+    cout << "Cluster start index: " << main.startCluster << endl;
     cout << "Sector start index: " << main.startSector << endl;
     cout << "Size: " << main.size << endl;
     cout << "Full Name: " << fullname.str() << endl;

@@ -17,11 +17,16 @@ int ReadSector(LPCWSTR  drive, int readPoint, BYTE sector[512])
     if (device == INVALID_HANDLE_VALUE) // Open Error
     {
         printf("CreateFile: %u\n", GetLastError());
+        system("pause");
         exit(EXIT_FAILURE);
     }
 
     SetFilePointer(device, readPoint, NULL, FILE_BEGIN); //Set a Point to Read
 
     if (!ReadFile(device, sector, 512, &bytesRead, NULL))
-        printf("ReadFile: %u\n", GetLastError());
+    {
+        printf("CreateFile: %u\n", GetLastError());
+        system("pause");
+        exit(EXIT_FAILURE);
+    }
 }
