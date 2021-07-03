@@ -2,14 +2,8 @@
 
 void Executor::execute()
 {
-	chooseTypeDisplay();
-	int choice;
-	cin >> choice;
-	cin.ignore();
-	system("cls");
-
 	string diskName;
-	cout << "Choose your disk: ";
+	cout << "\tChoose your disk: ";
 	getline(cin, diskName);
 
 	stringstream buffer;
@@ -18,6 +12,13 @@ void Executor::execute()
 	wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
 	wstring wide = converter.from_bytes(buffer.str());
 	LPCWSTR driver = wide.c_str();
+
+	chooseTypeDisplay();
+	int choice;
+	cin >> choice;
+	cin.ignore();
+	system("cls");
+	
 
 	BYTE sector[512];
 	RDET rdet(driver);

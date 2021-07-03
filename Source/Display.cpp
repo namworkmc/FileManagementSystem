@@ -5,7 +5,7 @@ void chooseTypeDisplay()
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
     SetConsoleTextAttribute(hConsole, 7);
-    cout << "||--";
+    cout << "\t||--";
     SetConsoleTextAttribute(hConsole, 12);
     cout << "> ";
     SetConsoleTextAttribute(hConsole, 11);
@@ -14,7 +14,7 @@ void chooseTypeDisplay()
     cout << "FAT32" << endl;
 
     SetConsoleTextAttribute(hConsole, 7);
-    cout << "||--";
+    cout << "\t||--";
     SetConsoleTextAttribute(hConsole, 12);
     cout << "> ";
     SetConsoleTextAttribute(hConsole, 11);
@@ -23,12 +23,12 @@ void chooseTypeDisplay()
     cout << "NTFS" << endl;
 
     SetConsoleTextAttribute(hConsole, 7);
-    cout << "||" << endl;
+    cout << "\t||" << endl;
 
     SetConsoleTextAttribute(hConsole, 7);
-    cout << "||===";
+    cout << "\t|L";
     SetConsoleTextAttribute(hConsole, 12);
-    cout << ">>> ";
+    cout << ">";
 
     SetConsoleTextAttribute(hConsole, 7);
 }
