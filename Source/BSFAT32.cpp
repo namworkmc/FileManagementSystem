@@ -42,18 +42,18 @@ void type(string hex)
     cout << endl;
 }
 
-void changeData(string hex, int start, int numbit)
+int changeData(string hex, int start, int numbit)
 {
     string a = hex.substr(start, numbit);
 
     string b = "";
 
-    for (int i = a.size() - 1; i > 0; i -= 2)
+    for (int i = a.size() - 2; i >= 0; i -= 2)
     {
         b += a.substr(i, 2);
-    }
 
-    cout << DecConvert(b) << endl;
+    }
+    return DecConvert(b);
 }
 
 void BootSectorFAT32(BYTE sector[])
@@ -63,21 +63,21 @@ void BootSectorFAT32(BYTE sector[])
     cout << "Type of FAT: ";
     type(hex);
     cout << "Number of bytes per sector: ";
-    changeData(hex, 0x0B * 2, 4);
+    cout << changeData(hex, 0x0B * 2, 4) << endl;
     cout << "Number of sector per cluster: ";
-    changeData(hex, 0x0D * 2, 2);
+    cout << changeData(hex, 0x0D * 2, 2) << endl;
     cout << "Number of sectors in the bootsector: ";
-    changeData(hex, 0x0E * 2, 4);
+    cout << changeData(hex, 0x0E * 2, 4) << endl;
     cout << "Number of FAT table: ";
-    changeData(hex, 0x10 * 2, 2);
+    cout << changeData(hex, 0x10 * 2, 2) << endl;
     cout << "Size of volume : ";
-    changeData(hex, 0x20 * 2, 8);
+    cout << changeData(hex, 0x20 * 2, 8) << endl;
     cout << "Size of per FAT table: ";
-    changeData(hex, 0x24 * 2, 8);
+    cout << changeData(hex, 0x24 * 2, 8) << endl;
     cout << "Begin cluster of RDET: ";
-    changeData(hex, 0x2C * 2, 8);
+    cout << changeData(hex, 0x2C * 2, 8) << endl;
     cout << "Sector contains extra information ( about empty cluster ): ";
-    changeData(hex, 0x30 * 2, 4);
+    cout << changeData(hex, 0x30 * 2, 4) << endl;
     cout << "Sector contains the save version of Boot Sector: ";
-    changeData(hex, 0x32 * 2, 4);
+    cout << changeData(hex, 0x32 * 2, 4) << endl;
 }

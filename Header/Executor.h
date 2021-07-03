@@ -9,18 +9,14 @@
 #include "MFT.h"
 #include "NTFSPartitionBootSector.h"
 #include "BSFAT32.h"
+#include "RDET.h"
 
 class Executor
-{
-private:
-	LPCWSTR driver;
+{	
 public:
-	Executor(LPCWSTR driver)
-	{
-		this->driver = driver;
-	}
 
 	void execute();
+
 };
 
 

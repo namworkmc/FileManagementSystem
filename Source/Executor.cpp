@@ -8,12 +8,29 @@ void Executor::execute()
 	cin.ignore();
 	system("cls");
 
+	string diskName;
+	cout << "Choose your disk: ";
+	getline(cin, diskName);
+
+	stringstream buffer;
+	buffer << "\\\\.\\" << diskName << ":";
+
+	wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+	wstring wide = converter.from_bytes(buffer.str());
+	LPCWSTR driver = wide.c_str();
+
 	BYTE sector[512];
+	RDET rdet(driver);
 	switch (choice)
 	{
 	case 1:
 		ReadSector(driver, 0, sector);
 		BootSectorFAT32(sector);
+
+		system("pause");
+		system("cls");
+
+		rdet.execute();
 		break;
 
 	case 2:
@@ -21,11 +38,11 @@ void Executor::execute()
 
 		int bps, spc, lcn;
 		asNTFS(sector, bps, spc, lcn);
+
 		system("pause");
+		system("cls");
 
 		FolderTree(driver, 0, bps, spc, lcn);
-		break;
-	default:
 		break;
 	}
 }

@@ -14,6 +14,6 @@ int DecConvert(string hex);
 
 void type(string hex);
 
-void changeData(string hex, int start, int numbit);
+int changeData(string hex, int start, int numbit);
 
 void BootSectorFAT32(BYTE sector[]);
